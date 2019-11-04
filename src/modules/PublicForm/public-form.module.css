@@ -1,0 +1,13 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 1em auto;
+    background: #f4a950;
+    color:#161b21;
+    border:1px solid tomato;
+}
+
+.item {
+    margin: 1rem;
+}
