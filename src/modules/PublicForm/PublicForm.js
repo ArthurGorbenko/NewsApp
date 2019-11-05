@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from "react";
 import style from "./public-form.module.css";
 import useHandleFormSubmit from "../useHandleFormSubmit";
+import axios from "axios";
 
 const PublicForm = () => {
   let myReff = null;
   const [files, setFiles] = useState({});
   const signup = data => {
-    // const formData = new FormData();
-    // formData.append("textdata", "balbal");
-    // // formData.append("media",JSON.stringify(files));
-    // console.log(formData);
-    console.log(JSON.stringify(data));
     const makeRequest = async () => {
-        const response = await fetch(
-          "http://213.111.67.158/wordpress/wp-json/news/v1/published",
-          {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers:{
-              'Content-Type': 'application/json',
-            }
-          }
-        );
-        console.log(response);
+      const formData = new FormData();
+      for (let key in data) {
+        formData.set(key, data[key]);
+      }
+      formData.append("media", files);
+      console.log(formData.getAll("name"));
+      const response = await axios({
+        method: "post",
+        url: `http://213.111.67.158/wordpress/wp-json/news/v1/published`,
+        data: formData,
+        config: { headers: { "Content-Type": "multipart/form-data" } },
+      });
+      console.log(response);
     };
     makeRequest();
   };
@@ -34,7 +32,11 @@ const PublicForm = () => {
 
   const [handleSubmit, handleInputChange, inputs] = useHandleFormSubmit(signup);
   return (
-    <form className={style.form} onSubmit={e => handleSubmit(e)}>
+    <form
+      className={style.form}
+      onSubmit={e => handleSubmit(e)}
+      encType="multipart/form-data"
+    >
       <label className={style.item}>
         Name{"  "}
         <input
