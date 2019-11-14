@@ -15,7 +15,8 @@ const useHandleFormSubmit = (callback) => {
     return [
       handleSubmit,
       handleInputChange,
-      inputs
+      inputs,
+      setInputs
     ];
   }
 

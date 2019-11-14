@@ -1,36 +1,30 @@
 import React, { useState, useEffect } from "react";
 import style from "./public-form.module.css";
 import useHandleFormSubmit from "../useHandleFormSubmit";
-import axios from "axios";
 
-const PublicForm = () => {
-  let myReff = null;
+const PublicForm = ({ callback, defaultInputs }) => {
+  const [
+    handleSubmit,
+    handleInputChange,
+    inputs,
+    setInputs,
+  ] = useHandleFormSubmit(callback);
   const [files, setFiles] = useState({});
-  const signup = data => {
-    const makeRequest = async () => {
-      const formData = new FormData();
-      for (let key in data) {
-        formData.set(key, data[key]);
-      }
-      formData.append("media", files);
-      console.log(formData.getAll("name"));
-      const response = await axios({
-        method: "post",
-        url: `http://213.111.67.158/wordpress/wp-json/news/v1/published`,
-        data: formData,
-        config: { headers: { "Content-Type": "multipart/form-data" } },
-      });
-      console.log(response);
-    };
-    makeRequest();
-  };
+  let myReff = React.createRef();
+
+  useEffect(() => {
+    setInputs({ ...defaultInputs });
+  }, [defaultInputs]);
+
+  useEffect(() => {
+    setInputs({ ...inputs, file: files });
+  }, [files]);
 
   const handleFileUpload = e => {
     e.preventDefault();
     setFiles(e.target.files[0]);
   };
 
-  const [handleSubmit, handleInputChange, inputs] = useHandleFormSubmit(signup);
   return (
     <form
       className={style.form}

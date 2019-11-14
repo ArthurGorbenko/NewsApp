@@ -1,0 +1,14 @@
+.wrapper_items { 
+    display: flex;
+    flex-wrap: wrap;
+}
+.wrapper_item {
+margin: 2rem;
+padding: 10px;
+    list-style: none;
+    border: 1px solid black;
+}
+
+.image {
+    height: 200px;
+}
