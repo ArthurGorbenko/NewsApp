@@ -15,7 +15,7 @@ const UpdateForm = ({token }) => {
   const [handleSubmit, handleInputChange, inputs] = useHandleFormSubmit(
     handleRequestedDataToUpdate
   );
-  console.log()
+  
   return (
     <div>
       <div className={style.wrapper}>
