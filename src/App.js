@@ -1,41 +1,54 @@
-import React from "react";
-import PublicForm from "./modules/PublicForm/PublicForm";
-import ListAllNews from "./modules/ListAllNews/ListAllNews";
-import ListSingleNews from "./modules/ListSingleNews/ListSignleNews";
-import UpdateForm from "./modules/UpdateForm/UpdateForm";
-import LoginForm from "./modules/LoginForm/LoginForm";
-import LogginedUser from './modules/LogginedUser/LogginedUser';
-import PublicMenu from './modules/PublicMenu/PublicMenu';
-import UserMenu from './modules/UserMenu/UserMenu';
-import { Router, Link } from "@reach/router";
-import style from "./app.module.css";
-import axios from "axios";
-import HomePage from "./modules/HomePage/HomePage";
-
-const App = token => {
+import React from 'react'
+import PublicForm from './modules/PublicForm/PublicForm'
+import ListAllNews from './modules/ListAllNews/ListAllNews'
+import ListSingleNews from './modules/ListSingleNews/ListSignleNews'
+import UpdateForm from './modules/UpdateForm/UpdateForm'
+import LoginForm from './modules/LoginForm/LoginForm'
+import RegisterForm from './modules/RegisterForm/RegisterForm'
+import LogginedUser from './modules/LogginedUser/LogginedUser'
+import PublicMenu from './modules/PublicMenu/PublicMenu'
+import UserMenu from './modules/UserMenu/UserMenu'
+import { Router } from '@reach/router'
+import style from './app.module.css'
+import { connect } from 'react-redux'
+import { handleSubmitFormSuggestNews } from './assets/api'
+const App = ({ login }) => {
   return (
     <div>
-      <h1>News App</h1>
-      <div className={style.wrapper}>
+      <span className={style.header}>News App</span>
+      <div className={style.main}>
+        <div className={style.wrapper}>
+          <Router>
+            <LoginForm path='/*' />
+            <RegisterForm path='register' />
+            <LogginedUser path='users/:login/*' />
+          </Router>
+          <Router>
+            <PublicMenu path='/*' />
+            <UserMenu path='users/:login/*' />
+          </Router>
+        </div>
         <Router>
-          <PublicMenu path="/" />
-          <UserMenu path="/:userLogin" />
-        </Router>
-        <Router>
-          <LoginForm path="/" />
-          <LogginedUser path="/:token" />
+          <ListAllNews path='/*' />
+          <ListSingleNews path='users/:login/listSinleNews' />
+          <UpdateForm path='users/:login/updateForm' />
+          <PublicForm
+            path='/suggestNews'
+            callback={handleSubmitFormSuggestNews}
+          />
+          <PublicForm
+            path='/users/:login/suggestNews'
+            callback={handleSubmitFormSuggestNews}
+          />
         </Router>
       </div>
-      <Router>
-        <ListAllNews path="/" />
-      </Router>
     </div>
-  );
+  )
 }
 
 const mapStateToProps = state => {
-  const { token } = state;
-  return token;
+  const { login } = state
+  return { login }
 }
 
-export default App;
+export default connect(mapStateToProps)(App)

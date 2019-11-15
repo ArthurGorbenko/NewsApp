@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.button {
+    background-color:#8aaae5  ;
+    border: none;
+    color:#fff;
+    margin-top: 1rem;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.button:hover{
+    cursor: pointer;
+    background-color: #714daa;
+    transition: 0.3s all ease;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.input {
+    border: 2px solid #b0c2e2;
+}
+
+.input:focus {
+    border: 2px solid #714daa;
+}

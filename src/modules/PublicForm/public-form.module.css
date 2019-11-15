@@ -2,9 +2,8 @@
     display: flex;
     flex-direction: column;
     max-width: 500px;
-    background: #f4a950;
+    background: #8aaae5;
     color:#161b21;
-    border:1px solid tomato;
 }
 
 .item {

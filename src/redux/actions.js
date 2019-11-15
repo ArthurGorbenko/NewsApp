@@ -1,4 +1,4 @@
-import { SET_TOKEN, DELETE_TOKEN } from './actionTypes';
+import { SET_TOKEN, DELETE_TOKEN, SET_LOGIN } from './actionTypes';
 
 export const setToken = token => {
     return {
@@ -14,3 +14,12 @@ export const deleteToken = () => {
         type: DELETE_TOKEN,
     }
 };
+
+export const setLogin = login => {
+    return {
+        type: SET_LOGIN,
+        payload: {
+            login,
+        }
+    }
+}

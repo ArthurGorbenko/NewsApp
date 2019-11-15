@@ -1,0 +1,11 @@
+.link {
+    color: #fff;
+    text-decoration: none;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    min-width: 200px;
+}

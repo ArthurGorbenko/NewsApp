@@ -1,5 +1,13 @@
 .wrapper {
-    border :1px solid tomato;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    /* justify-content: space-between; */
+}
+
+.main {
+    display: flex;
+}
+
+.header {
+    text-transform: uppercase;
 }
