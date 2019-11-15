@@ -15,7 +15,6 @@ export const handleSubmitFormSuggestNews = data => {
       method: 'post',
       data: bodyData
     })
-    console.log(response.data)
     return response
   }
   return makeRequest(formedData)
@@ -24,21 +23,17 @@ export const handleSubmitFormSuggestNews = data => {
 export const sendLoginInfo = inputsData => {
   const makeRequest = async inputsData => {
     const userInfo = processDataToFormData(inputsData)
-    console.log(userInfo.getAll('username'))
-    console.log(userInfo.getAll('password'))
     const response = await axios({
       method: 'post',
       url: GET_JWT_TOKEN,
       data: userInfo
     })
-    console.log(response)
     return response
   }
   return makeRequest(inputsData)
 }
 
 export const sendRegistrationInfo = inputsData => {
-  console.log(inputsData)
   const formedData = processDataToFormData(inputsData)
   const makeRequest = async formData => {
     const response = await axios({
@@ -46,7 +41,6 @@ export const sendRegistrationInfo = inputsData => {
       url: REGISTER_USER,
       data: formData
     })
-    console.log(response)
     return response
   }
   return makeRequest(formedData)
@@ -54,7 +48,7 @@ export const sendRegistrationInfo = inputsData => {
 
 export const requestNewsDataToUpdate = (data, token) => {
   const { news_id } = data
-  
+
   const makeRequest = async news_id => {
     const response = await axios({
       method: 'get',
@@ -62,7 +56,6 @@ export const requestNewsDataToUpdate = (data, token) => {
       headers: { Authorization: `Bearer ${token}` }
     })
     const { data } = response
-    console.log(response)
     return {
       ID: data.ID,
       name: data.author_name,
@@ -76,18 +69,15 @@ export const requestNewsDataToUpdate = (data, token) => {
   return makeRequest(news_id)
 }
 
-export const sendInfoToUpdatePost = (data,token='') => {
+export const sendInfoToUpdatePost = (data, token = '') => {
   const makeRequest = async () => {
     const formedData = processDataToFormData(data)
-    formedData.append('file', data.file)
-    console.log(token)
     const response = await axios({
       method: 'post',
       url: `${UPDATE_NEWS_BY_ID}${data.ID}`,
       data: formedData,
-      headers: { 'Content-Type': 'multipart/form-data',Authorization: `Bearer ${token}` }
+      headers: { Authorization: `Bearer ${token}` }
     })
-    console.log(response)
     return response
   }
   return makeRequest(data)
@@ -96,9 +86,6 @@ export const sendInfoToUpdatePost = (data,token='') => {
 const processDataToFormData = data => {
   const formData = new FormData()
   for (let key in data) {
-    if (key === 'file') {
-      formData.append(key, data[key])
-    }
     formData.set(key, data[key])
   }
   return formData

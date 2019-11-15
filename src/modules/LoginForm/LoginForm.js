@@ -5,13 +5,13 @@ import { setToken, setLogin } from '../../redux/actions'
 import { connect } from 'react-redux'
 import { navigate } from '@reach/router'
 import defaultStyles from '../LoginForm/login-form.module.css'
-import {sendLoginInfo} from '../../assets/api'
+import { sendLoginInfo } from '../../assets/api'
 
 const LoginForm = ({ setToken, setLogin }) => {
   const proceedFormLoginSubmit = async inputsData => {
     const response = await sendLoginInfo(inputsData)
-    setLogin( await response.data.user_nicename)//TO_DO break into pieces
-    setToken( await response.data.token)
+    setLogin(await response.data.user_nicename) // TO_DO break into pieces
+    setToken(await response.data.token)
     localStorage.setItem('token', response.data.token)
     navigate(`users/${inputsData.username}`)
   }
@@ -30,7 +30,7 @@ const LoginForm = ({ setToken, setLogin }) => {
             className={defaultStyles.input}
             type='text'
             name='username'
-            value={inputs.username}
+            value={inputs.username ? inputs.username : ''}
             onChange={e => handleInputChange(e)}
           />
         </label>
@@ -40,13 +40,16 @@ const LoginForm = ({ setToken, setLogin }) => {
             className={defaultStyles.input}
             type='text'
             name='password'
-            value={defaultStyles.password}
+            value={inputs.password ? inputs.password : ''}
             onChange={e => handleInputChange(e)}
           />
         </label>
         <input type='submit' className={defaultStyles.button} value='Login' />
       </form>
-      <button onClick={e => handleButtonClick(e)} className={defaultStyles.button}>
+      <button
+        onClick={e => handleButtonClick(e)}
+        className={defaultStyles.button}
+      >
         Register
       </button>
     </div>

@@ -14,11 +14,11 @@ const PublicForm = ({ callback, defaultInputs }) => {
 
   useEffect(() => {
     setInputs({ ...defaultInputs });
-  }, [defaultInputs]);
+  }, [defaultInputs,setInputs]);
 
   useEffect(() => {
     setInputs({ ...inputs, file: files });
-  }, [files]);
+  }, [files,setInputs]);
 
   const handleFileUpload = e => {
     e.preventDefault();
@@ -36,7 +36,7 @@ const PublicForm = ({ callback, defaultInputs }) => {
         <input
           type="text"
           name="name"
-          value={inputs.name}
+          value={inputs.name ? inputs.name : ''}
           onChange={e => handleInputChange(e)}
         />
       </label>
@@ -45,7 +45,7 @@ const PublicForm = ({ callback, defaultInputs }) => {
         <input
           type="email"
           name="email"
-          value={inputs.email}
+          value={inputs.email ? inputs.email : ''}
           onChange={e => handleInputChange(e)}
         />
       </label>
@@ -54,7 +54,7 @@ const PublicForm = ({ callback, defaultInputs }) => {
         <input
           type="text"
           name="topic"
-          value={inputs.topic}
+          value={inputs.topic ? inputs.topic : ''}
           onChange={e => handleInputChange(e)}
         />
       </label>
@@ -66,14 +66,14 @@ const PublicForm = ({ callback, defaultInputs }) => {
         name="message"
         placeholder="Enter your message here..."
         onChange={e => handleInputChange(e)}
-        value={inputs.message}
+        value={inputs.message ? inputs.message : ''}
       ></textarea>
       <label className={style.item}>
         Category {"  "}
         <select
           name="category"
           onChange={e => handleInputChange(e)}
-          value={inputs.category}
+          value={inputs.category ? inputs.category : "Travel"}
         >
           <option value="Travel">Travel</option>
           <option value="Psyhology">Psyhology</option>
@@ -84,7 +84,7 @@ const PublicForm = ({ callback, defaultInputs }) => {
       <input
         className={style.item}
         type="file"
-        name="media"
+        name="file"
         ref={r => {
           myReff = r;
         }}

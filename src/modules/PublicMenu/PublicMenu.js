@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Link } from '@reach/router'
+import { Link } from '@reach/router'
 import defaultStyles from '../LoginForm/login-form.module.css'
 import style from './public-menu.module.css'
 

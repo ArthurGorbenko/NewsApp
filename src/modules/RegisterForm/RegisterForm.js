@@ -1,6 +1,5 @@
 import React from 'react'
 import useHandleFormSubmit from '../useHandleFormSubmit'
-import axios from 'axios'
 import { navigate } from '@reach/router'
 import style from '../LoginForm/login-form.module.css'
 import { sendRegistrationInfo } from '../../assets/api'
@@ -23,7 +22,7 @@ const RegisterForm = () => {
             className={style.input}
             type='text'
             name='username'
-            value={inputs.username}
+            value={inputs.username ? inputs.username : ""}
             onChange={e => handleChange(e)}
             required
           />
@@ -34,7 +33,7 @@ const RegisterForm = () => {
             className={style.input}
             type='email'
             name='email'
-            value={inputs.email}
+            value={inputs.email ? inputs.email : ""}
             onChange={e => handleChange(e)}
             required
           />
@@ -45,7 +44,7 @@ const RegisterForm = () => {
             className={style.input}
             type='password'
             name='password'
-            value={inputs.password}
+            value={inputs.password ? inputs.password : ""}
             onChange={e => handleChange(e)}
             required
           />
