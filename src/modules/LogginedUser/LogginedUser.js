@@ -10,7 +10,7 @@ const LogginedUser = ({ login }) => {
   }
   return (
     <div className={style.wrapper}>
-      <span>Hello,{login}</span>
+      <span className={style.greetings}>Hello,{login}</span>
       <button className={defaultStyles.button} onClick={e => handleClick(e)}>
         Exit
       </button>
