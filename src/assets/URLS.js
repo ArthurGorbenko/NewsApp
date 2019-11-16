@@ -1,4 +1,4 @@
-const IP = `http://213.111.67.158/`
+const IP = `http://localhost/`
 // Anauthorized requests
 export const GET_ALL_NEWS = `${IP}wordpress/wp-json/news/v1/published`
 export const SUGGEST_NEWS = `${IP}wordpress/wp-json/news/v1/published`
