@@ -114,6 +114,10 @@ export const sendInfoToUpdatePost = (data, token = '') => {
 const processDataToFormData = data => {
   const formData = new FormData()
   for (let key in data) {
+    if (key === 'file') {
+      formData.append('file', data[key])
+      continue
+    }
     formData.set(key, data[key])
   }
   return formData

@@ -30,7 +30,6 @@ const PublicForm = ({ callback, defaultInputs }) => {
     e.preventDefault()
     setFiles(e.target.files[0])
   }
-
   return (
     <div className={style.wrapper}>
       <form
