@@ -18,12 +18,6 @@ const ListNews = () => {
     handleUpload()
   }, [])
 
-  // const handleClick = e => {
-  //   if (token) {
-  //     toggle(!isToggle)
-  //   }
-  // }
-
   return (
     <div className={style.wrapper_items}>
       {news && news.length ? (

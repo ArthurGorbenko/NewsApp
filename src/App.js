@@ -31,6 +31,7 @@ const App = () => {
           <Router>
             <ListAllNews path='/*' />
             <UpdateForm path='users/:login/updateForm/:ID' />
+            <UpdateForm path='users/:login/updateForm' />
             <PublicForm
               path='/suggestNews'
               callback={handleSubmitFormSuggestNews}
