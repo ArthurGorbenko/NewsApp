@@ -9,7 +9,6 @@
 }
 
 .wrapper_item:hover {
-    cursor: pointer;
     border: 2px solid #714daa;
     transition: 0.3s ease-in;
 }
