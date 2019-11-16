@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import style from "./list-news.module.css";
-import axios from "axios";
+import { fetchNews } from "../../assets/api";
 
 const ListNews = () => {
   const [news, updateNews] = useState([]);
   useEffect(() => {
-    const fetchNews = async () => {
-      const response = await axios({
-        method: "get",
-        url: `http://213.111.67.158/wordpress/wp-json/news/v1/published`,
-      });
+    const handleUpload = async () => {
+      const response = await fetchNews();
       updateNews(response.data);
+      return response;
     };
-    fetchNews();
+    handleUpload()
   }, []);
   return (
     <div className={style.wrapper_items}>

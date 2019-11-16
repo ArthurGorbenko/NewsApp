@@ -3,9 +3,18 @@ import {
   GET_JWT_TOKEN,
   REGISTER_USER,
   UPDATE_NEWS_BY_ID,
-  GET_SINGLE_NEWS_BY_ID
+  GET_SINGLE_NEWS_BY_ID,
+  GET_ALL_NEWS
 } from './URLS'
 import axios from 'axios'
+
+export const fetchNews = async () => {
+  const response = await axios({
+    method:'get',
+    url : GET_ALL_NEWS,
+  })
+  return response;
+}
 
 export const handleSubmitFormSuggestNews = data => {
   const formedData = processDataToFormData(data)
