@@ -57,7 +57,7 @@ export const sendRegistrationInfo = inputsData => {
 
 export const requestNewsDataToUpdate = (data, token) => {
   const { news_id } = data
-
+  console.log(data,token)
   const makeRequest = async news_id => {
     const response = await axios({
       method: 'get',

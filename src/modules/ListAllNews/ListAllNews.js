@@ -1,43 +1,40 @@
-import React, { useState, useEffect } from "react";
-import style from "./list-news.module.css";
-import { fetchNews } from "../../assets/api";
+import React, { useState, useEffect } from 'react'
+import style from './list-news.module.css'
+import { fetchNews } from '../../assets/api'
+import ListItem from '../ListItem/ListItem'
+import { useSelector } from 'react-redux'
 
 const ListNews = () => {
-  const [news, updateNews] = useState([]);
+  const [news, updateNews] = useState([])
+  const [isToggle, toggle] = useState()
+  const token = useSelector(state => state.token)
+
   useEffect(() => {
     const handleUpload = async () => {
-      const response = await fetchNews();
-      updateNews(response.data);
-      return response;
-    };
+      const response = await fetchNews()
+      updateNews(response.data)
+      return response
+    }
     handleUpload()
-  }, []);
+  }, [])
+
+  // const handleClick = e => {
+  //   if (token) {
+  //     toggle(!isToggle)
+  //   }
+  // }
+
   return (
     <div className={style.wrapper_items}>
       {news && news.length ? (
         news.map(item => (
-          <ul className={style.wrapper_item} key={item.ID}>
-            <li>ID:{item.ID}</li>
-            <li>Title:{item.post_title}</li>
-            <li>Content:{item.post_content}</li>
-            <li>Date:{item.post_date}</li>
-            <li>Author Name:{item.author_name}</li>
-            <li>Author Email:{item.author_email}</li>
-            <li>Attachment:{item._thumbnail_id}</li>
-            <li>
-              <img
-                className={style.image}
-                src={item.attachment_url}
-                alt="page"
-              />
-            </li>
-          </ul>
+          <ListItem data={item} isToggle={isToggle} key={item.ID} />
         ))
       ) : (
         <h3>Loading....</h3>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ListNews;
+export default ListNews

@@ -1,13 +1,25 @@
 .wrapper {
+    flex: 1 1 500px;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
+}
+
+.wrapper_items {
+    flex:2 1 500px;
+    margin-top: 1rem;
 }
 
 .main {
     display: flex;
+    justify-content: space-between;
 }
 
 .header {
     text-transform: uppercase;
+    height: 50px;
+    background: #8aaae5;
+    font-size: 30px;
+    text-align: center;
+    padding: 5px;
+
 }

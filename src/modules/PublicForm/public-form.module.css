@@ -1,11 +1,64 @@
 .form {
     display: flex;
     flex-direction: column;
-    max-width: 500px;
     background: #8aaae5;
-    color:#161b21;
+    color: #161b21;
+    width: 500px;
+    margin: 2rem auto;
+}
+
+.wrapper {
+    width: 60%;
 }
 
 .item {
     margin: 1rem;
+}
+
+.textarea {
+    font-size: 22px;
+    margin: 1rem;
+}
+
+.label {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.hidden_input+.custom_input {
+    font-size: 25px;
+    font-weight: 500;
+    display: inline-block;
+    width: 250px;
+    color: black;
+    background-color: white;
+}
+
+.hidden_input:focus+.custom_input, .hidden_input+.custom_input:hover {
+    outline: 2px solid #714daa;
+    color: #fff;
+    background-color: #8aaae5;
+    cursor: pointer;
+    
+}
+
+.hidden_input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.submit {
+    background: #714daa;
+    border: none;
+    font-size: 25px;
+    color:#fff;
+    padding: 5px;
+}
+.submit:hover {
+    cursor: pointer;
+    transition: 0.3s all ease-in;
 }

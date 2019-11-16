@@ -6,16 +6,12 @@ import style from './public-menu.module.css'
 const PublicMenu = () => {
   return (
     <div className={style.wrapper}>
-      <button className={defaultStyles.button}>
-        <Link className={style.link} to='/'>
-          List All News
-        </Link>
-      </button>
-      <button className={defaultStyles.button}>
-        <Link className={style.link} to='/suggestNews'>
-          Suggest news
-        </Link>
-      </button>
+    <Link className={style.link} to='/'>
+        <button className={defaultStyles.button}>List All News</button>
+      </Link>
+      <Link className={style.link} to='/suggestNews'>
+        <button className={defaultStyles.button}>Suggest news</button>
+      </Link>
     </div>
   )
 }

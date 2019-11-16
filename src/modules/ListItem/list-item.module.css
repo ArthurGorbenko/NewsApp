@@ -1,0 +1,29 @@
+.wrapper_item {
+    width: 400px;
+    height: 600px;
+    margin: 2rem;
+    padding: 2rem;
+    list-style: none;
+    border: 2px solid #8aaae5;
+    overflow-y: auto;
+}
+
+.wrapper_item:hover {
+    cursor: pointer;
+    border: 2px solid #714daa;
+    transition: 0.3s ease-in;
+}
+
+.image {
+    height: 300px;
+}
+
+.title {
+    font-style: oblique;
+    font-size: larger;
+    text-align: center;
+}
+
+.author_info {
+    font-size: 15px;
+}

@@ -14,9 +14,9 @@ import { handleSubmitFormSuggestNews } from './assets/api'
 const App = () => {
   return (
     <div>
-      <span className={style.header}>News App</span>
+      <div className={style.header}>News App</div>
       <div className={style.main}>
-        <div className={style.wrapper}>
+        <div className={style.wrapper_menu}>
           <Router>
             <LoginForm path='/*' />
             <RegisterForm path='register' />
@@ -27,18 +27,20 @@ const App = () => {
             <UserMenu path='users/:login/*' />
           </Router>
         </div>
-        <Router>
-          <ListAllNews path='/*' />
-          <UpdateForm path='users/:login/updateForm' />
-          <PublicForm
-            path='/suggestNews'
-            callback={handleSubmitFormSuggestNews}
-          />
-          <PublicForm
-            path='/users/:login/suggestNews'
-            callback={handleSubmitFormSuggestNews}
-          />
-        </Router>
+        <div className={style.wrapper_items}>
+          <Router>
+            <ListAllNews path='/*' />
+            <UpdateForm path='users/:login/updateForm/:ID' />
+            <PublicForm
+              path='/suggestNews'
+              callback={handleSubmitFormSuggestNews}
+            />
+            <PublicForm
+              path='/users/:login/suggestNews'
+              callback={handleSubmitFormSuggestNews}
+            />
+          </Router>
+        </div>
       </div>
     </div>
   )

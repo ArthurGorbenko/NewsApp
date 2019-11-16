@@ -6,16 +6,15 @@ import style from './user-menu.module.css'
 const UserMenu = () => {
   return (
     <div className={style.wrapper}>
-      <button className={defaultStyles.button}>
-        <Link className={style.link} to='updateForm'>
-          Update news
-        </Link>
-      </button>
-      <button className={defaultStyles.button}>
-        <Link className={style.link} to='suggestNews'>
-          Suggest news
-        </Link>
-      </button>
+      <Link className={style.link} to=''>
+        <button className={defaultStyles.button}>Home</button>
+      </Link>
+      <Link className={style.link} to='updateForm'>
+        <button className={defaultStyles.button}>Update news</button>
+      </Link>
+      <Link className={style.link} to='suggestNews'>
+        <button className={defaultStyles.button}>Suggest news</button>
+      </Link>
     </div>
   )
 }
