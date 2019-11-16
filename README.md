@@ -6,6 +6,11 @@
 - CSS Modules
 - Reach Router
 - Hooks
+#### TO DO :
+- [ ] add ability to delete news
+- [ ] add responsive stylesheet
+- [ ] handle server answers
+- [ ] handle app errors
 #### Install :
 - First, you need to set up [WP-Blog](https://github.com/ArthurGorbenko/WP-Blog) on your local server enviroment
 - clone project
