@@ -20,16 +20,19 @@ export const fetchNews = async () => {
 export const handleSubmitFormSuggestNews = data => {
   const formedData = processDataToFormData(data)
   const makeRequest = async bodyData => {
-    const response = await axios({
-      url: SUGGEST_NEWS,
-      method: 'post',
-      data: bodyData
-    })
-    console.log(response)
-    if (response.status === 200) {
-      navigate(`success/${response.data.ID}`, { data: response.data })
+    try {
+      const response = await axios({
+        url: SUGGEST_NEWS,
+        method: 'post',
+        data: bodyData
+      })
+      if (response.status === 200) {
+        navigate(`success/${response.data.ID}`, { data: response.data })
+      }
+      return response
+    } catch (err) {
+      console.log(err)
     }
-    return response
   }
   return makeRequest(formedData)
 }
@@ -46,7 +49,6 @@ export const sendLoginInfo = inputsData => {
       return response
     } catch (err) {
       console.log(err)
-      return null;
     }
   }
   return makeRequest(inputsData)
@@ -55,19 +57,22 @@ export const sendLoginInfo = inputsData => {
 export const sendRegistrationInfo = inputsData => {
   const formedData = processDataToFormData(inputsData)
   const makeRequest = async formData => {
-    const response = await axios({
-      method: 'post',
-      url: REGISTER_USER,
-      data: formData
-    })
-    return response
+    try {
+      const response = await axios({
+        method: 'post',
+        url: REGISTER_USER,
+        data: formData
+      })
+      return response
+    } catch (err) {
+      console.log(err)
+    }
   }
   return makeRequest(formedData)
 }
 
 export const requestNewsDataToUpdate = (data, token) => {
   const { news_id } = data
-  console.log(data, token)
   const makeRequest = async news_id => {
     const response = await axios({
       method: 'get',
@@ -91,13 +96,17 @@ export const requestNewsDataToUpdate = (data, token) => {
 export const sendInfoToUpdatePost = (data, token = '') => {
   const makeRequest = async () => {
     const formedData = processDataToFormData(data)
-    const response = await axios({
-      method: 'post',
-      url: `${UPDATE_NEWS_BY_ID}${data.ID}`,
-      data: formedData,
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    return response
+    try {
+      const response = await axios({
+        method: 'post',
+        url: `${UPDATE_NEWS_BY_ID}${data.ID}`,
+        data: formedData,
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      return response
+    } catch (err) {
+      console.log(err)
+    }
   }
   return makeRequest(data)
 }

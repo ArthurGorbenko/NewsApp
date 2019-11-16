@@ -24,7 +24,7 @@ const App = () => {
             <LogginedUser path='users/:login/*' />
           </Router>
           <Router>
-          <PublicMenu path='/*' />
+            <PublicMenu path='/*' />
             <UserMenu path='users/:login/*' />
           </Router>
         </div>

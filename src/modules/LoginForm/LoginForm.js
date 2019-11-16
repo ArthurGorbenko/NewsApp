@@ -6,17 +6,19 @@ import defaultStyles from '../LoginForm/login-form.module.css'
 import { sendLoginInfo } from '../../assets/api'
 import { useDispatch } from 'react-redux'
 import { setToken, setLogin } from '../../redux/actions'
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 
 const LoginForm = () => {
   const dispatch = useDispatch()
   const proceedFormLoginSubmit = async inputsData => {
     const response = await sendLoginInfo(inputsData)
-    console.log(response)
-    localStorage.setItem('token', response.data.token) // TODO broke into pieces
-    localStorage.setItem('login', response.data.user_nicename)
-    dispatch(setToken(response.data.token))
-    dispatch(setLogin(response.data.user_nicename))
-    navigate(`users/${inputsData.username}`)
+    if (response) {
+      localStorage.setItem('token', response.data.token) // TODO broke into pieces
+      localStorage.setItem('login', response.data.user_nicename)
+      dispatch(setToken(response.data.token))
+      dispatch(setLogin(response.data.user_nicename))
+      navigate(`users/${inputsData.username}`)
+    }
   }
 
   const handleButtonClick = e => {
@@ -64,4 +66,10 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+export default function LoginErrorBoundary (props) {
+  return (
+    <ErrorBoundary>
+      <LoginForm {...props} />
+    </ErrorBoundary>
+  )
+}

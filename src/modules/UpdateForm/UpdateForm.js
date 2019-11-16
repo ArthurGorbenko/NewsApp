@@ -1,25 +1,34 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import style from './update-form.module.css'
 import PublicForm from '../PublicForm/PublicForm'
 import useHandleFormSubmit from '../useHandleFormSubmit'
 import { useSelector } from 'react-redux'
 import { requestNewsDataToUpdate, sendInfoToUpdatePost } from '../../assets/api'
 import defaultStyles from '../LoginForm/login-form.module.css'
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 
-const UpdateForm = ({ID}) => {
+const UpdateForm = ({ ID }) => {
   const token = useSelector(state => state.token)
   const [currentNews, updateCurrentNews] = useState({})
   const handleRequestedDataToUpdate = async inputData => {
     const data = await requestNewsDataToUpdate(inputData, token)
-    updateCurrentNews(data)
+    if (data) {
+      updateCurrentNews(data)
+    }
   }
 
-  const [handleSubmit, handleInputChange, inputs,setInputs] = useHandleFormSubmit(
-    handleRequestedDataToUpdate
+  const [
+    handleSubmit,
+    handleInputChange,
+    inputs,
+    setInputs
+  ] = useHandleFormSubmit(handleRequestedDataToUpdate)
+  useEffect(
+    () => {
+      setInputs({ ...inputs, news_id: ID })
+    },
+    [ID]
   )
-  useEffect(()=> {
-    setInputs({...inputs,news_id:ID})
-  },[ID])
 
   return (
     <div className={style.wrapper}>
@@ -33,13 +42,17 @@ const UpdateForm = ({ID}) => {
             onChange={e => handleInputChange(e)}
             className={defaultStyles.input}
           />
-          <input type='submit' value='Request' className={defaultStyles.button} />
+          <input
+            type='submit'
+            value='Request'
+            className={defaultStyles.button}
+          />
         </form>
+      </div>
         <PublicForm
           callback={sendInfoToUpdatePost}
           defaultInputs={currentNews}
         />
-      </div>
       <div className={style.wrapper_image}>
         {currentNews.imageUrl ? (
           <img
@@ -55,4 +68,10 @@ const UpdateForm = ({ID}) => {
   )
 }
 
-export default UpdateForm
+export default function (props) {
+  return (
+    <ErrorBoundary>
+      <UpdateForm {...props} />
+    </ErrorBoundary>
+  )
+}
