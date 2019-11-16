@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react'
 import style from './list-news.module.css'
 import { fetchNews } from '../../assets/api'
 import ListItem from '../ListItem/ListItem'
-import { useSelector } from 'react-redux'
+import Loader from 'react-loader-spinner'
 
 const ListNews = () => {
   const [news, updateNews] = useState([])
-  const [isToggle, toggle] = useState()
-  const token = useSelector(state => state.token)
 
   useEffect(() => {
     const handleUpload = async () => {
@@ -22,10 +20,16 @@ const ListNews = () => {
     <div className={style.wrapper_items}>
       {news && news.length ? (
         news.map(item => (
-          <ListItem data={item} isToggle={isToggle} key={item.ID} />
+          <ListItem data={item} key={item.ID} />
         ))
       ) : (
-        <h3>Loading....</h3>
+        <Loader
+          type='Puff'
+          color='#00BFFF'
+          height={300}
+          width={300}
+          timeout={4000}
+        />
       )}
     </div>
   )

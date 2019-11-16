@@ -66,6 +66,7 @@ const PublicForm = ({ callback, defaultInputs }) => {
             value={inputs.topic ? inputs.topic : ''}
             onChange={e => handleInputChange(e)}
             className={defaultStyles.input}
+            required
           />
         </label>
         <textarea
@@ -77,6 +78,7 @@ const PublicForm = ({ callback, defaultInputs }) => {
           placeholder='Enter your message here...'
           onChange={e => handleInputChange(e)}
           value={inputs.message ? inputs.message : ''}
+          required
         />
         <label className={style.label}>
           <span className={defaultStyles.title}>Category</span>

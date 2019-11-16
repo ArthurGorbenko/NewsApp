@@ -7,6 +7,7 @@ import RegisterForm from './modules/RegisterForm/RegisterForm'
 import LogginedUser from './modules/LogginedUser/LogginedUser'
 import PublicMenu from './modules/PublicMenu/PublicMenu'
 import UserMenu from './modules/UserMenu/UserMenu'
+import SuccessMessage from './modules/SuccessMessage/SuccessMessage'
 import { Router } from '@reach/router'
 import style from './app.module.css'
 import { handleSubmitFormSuggestNews } from './assets/api'
@@ -23,12 +24,14 @@ const App = () => {
             <LogginedUser path='users/:login/*' />
           </Router>
           <Router>
-            <PublicMenu path='/*' />
+          <PublicMenu path='/*' />
             <UserMenu path='users/:login/*' />
           </Router>
         </div>
         <div className={style.wrapper_items}>
           <Router>
+            <SuccessMessage path='/success/:ID'/>
+            <SuccessMessage path='users/:login/success/:ID'/>
             <ListAllNews path='/*' />
             <UpdateForm path='users/:login/updateForm/:ID' />
             <UpdateForm path='users/:login/updateForm' />

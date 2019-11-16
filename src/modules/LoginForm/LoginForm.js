@@ -8,14 +8,14 @@ import { useDispatch } from 'react-redux'
 import { setToken, setLogin } from '../../redux/actions'
 
 const LoginForm = () => {
-
   const dispatch = useDispatch()
   const proceedFormLoginSubmit = async inputsData => {
     const response = await sendLoginInfo(inputsData)
-    localStorage.setItem('token', response.data.token)//TODO broke into pieces
+    console.log(response)
+    localStorage.setItem('token', response.data.token) // TODO broke into pieces
     localStorage.setItem('login', response.data.user_nicename)
-    dispatch(setLogin(response.data.user_nicename))
     dispatch(setToken(response.data.token))
+    dispatch(setLogin(response.data.user_nicename))
     navigate(`users/${inputsData.username}`)
   }
 
@@ -38,6 +38,7 @@ const LoginForm = () => {
             name='username'
             value={inputs.username ? inputs.username : ''}
             onChange={e => handleInputChange(e)}
+            required
           />
         </label>
         <label>
@@ -48,6 +49,7 @@ const LoginForm = () => {
             name='password'
             value={inputs.password ? inputs.password : ''}
             onChange={e => handleInputChange(e)}
+            required
           />
         </label>
         <input type='submit' className={defaultStyles.button} value='Login' />

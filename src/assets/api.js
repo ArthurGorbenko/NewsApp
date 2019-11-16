@@ -7,13 +7,14 @@ import {
   GET_ALL_NEWS
 } from './URLS'
 import axios from 'axios'
+import { navigate } from '@reach/router'
 
 export const fetchNews = async () => {
   const response = await axios({
-    method:'get',
-    url : GET_ALL_NEWS,
+    method: 'get',
+    url: GET_ALL_NEWS
   })
-  return response;
+  return response
 }
 
 export const handleSubmitFormSuggestNews = data => {
@@ -24,6 +25,10 @@ export const handleSubmitFormSuggestNews = data => {
       method: 'post',
       data: bodyData
     })
+    console.log(response)
+    if (response.status === 200) {
+      navigate(`success/${response.data.ID}`, { data: response.data })
+    }
     return response
   }
   return makeRequest(formedData)
@@ -32,12 +37,17 @@ export const handleSubmitFormSuggestNews = data => {
 export const sendLoginInfo = inputsData => {
   const makeRequest = async inputsData => {
     const userInfo = processDataToFormData(inputsData)
-    const response = await axios({
-      method: 'post',
-      url: GET_JWT_TOKEN,
-      data: userInfo
-    })
-    return response
+    try {
+      const response = await axios({
+        method: 'post',
+        url: GET_JWT_TOKEN,
+        data: userInfo
+      })
+      return response
+    } catch (err) {
+      console.log(err)
+      return null;
+    }
   }
   return makeRequest(inputsData)
 }
@@ -57,7 +67,7 @@ export const sendRegistrationInfo = inputsData => {
 
 export const requestNewsDataToUpdate = (data, token) => {
   const { news_id } = data
-  console.log(data,token)
+  console.log(data, token)
   const makeRequest = async news_id => {
     const response = await axios({
       method: 'get',

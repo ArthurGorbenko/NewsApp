@@ -1,9 +1,8 @@
 import React from 'react'
 import style from './list-item.module.css'
 
-const ListItemMini = ({ post_title, attachment_url, post_content }) => {
-console.log(post_title, attachment_url, post_content)
-    return (
+const ListItemMini = ({ post_content, post_title, attachment_url }) => {
+  return (
     <ul className={style.wrapper_item}>
       <li className={style.title}>{post_title}</li>
       <li>
