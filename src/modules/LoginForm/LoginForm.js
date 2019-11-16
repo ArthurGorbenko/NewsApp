@@ -1,18 +1,15 @@
 import React from 'react'
 import style from './login-form.module.css'
 import useHandleFormSubmit from '../useHandleFormSubmit'
-import { setToken, setLogin } from '../../redux/actions'
-import { connect } from 'react-redux'
 import { navigate } from '@reach/router'
 import defaultStyles from '../LoginForm/login-form.module.css'
 import { sendLoginInfo } from '../../assets/api'
 
-const LoginForm = ({ setToken, setLogin }) => {
+const LoginForm = () => {
   const proceedFormLoginSubmit = async inputsData => {
     const response = await sendLoginInfo(inputsData)
-    setLogin(await response.data.user_nicename) // TO_DO break into pieces
-    setToken(await response.data.token)
     localStorage.setItem('token', response.data.token)
+    localStorage.setItem('login', response.data.user_nicename)
     navigate(`users/${inputsData.username}`)
   }
   const handleButtonClick = e => {
@@ -56,7 +53,4 @@ const LoginForm = ({ setToken, setLogin }) => {
   )
 }
 
-export default connect(
-  null,
-  { setToken, setLogin }
-)(LoginForm)
+export default LoginForm;
