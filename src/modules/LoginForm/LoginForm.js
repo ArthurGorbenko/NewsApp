@@ -46,7 +46,7 @@ const LoginForm = () => {
           <span className={defaultStyles.title}>password</span>
           <input
             className={defaultStyles.input}
-            type='text'
+            type='password'
             name='password'
             value={inputs.password ? inputs.password : ''}
             onChange={e => handleInputChange(e)}

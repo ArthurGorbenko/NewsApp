@@ -18,12 +18,13 @@ const PublicForm = ({ callback, defaultInputs }) => {
       setInputs({ ...defaultInputs })
     },
     [defaultInputs, setInputs]
-  )
-
-  useEffect(
-    () => {
-      setInputs({ ...inputs, file: files })
-    },
+    )
+    
+    useEffect(
+      () => {
+        setInputs({ ...inputs, file: files })
+      },
+      // eslint-disable-next-line
     [files, setInputs]
   )
 

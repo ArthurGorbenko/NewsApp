@@ -23,10 +23,12 @@ const UpdateForm = ({ ID }) => {
     inputs,
     setInputs
   ] = useHandleFormSubmit(handleRequestedDataToUpdate)
+
   useEffect(
     () => {
       setInputs({ ...inputs, news_id: ID })
     },
+    // eslint-disable-next-line
     [ID,setInputs]
   )
 
@@ -38,7 +40,7 @@ const UpdateForm = ({ ID }) => {
           <input
             type='text'
             name='news_id'
-            value={inputs.news_id ? inputs.news_id : ID}
+            value={inputs.news_id ? inputs.news_id : ""}
             onChange={e => handleInputChange(e)}
             className={defaultStyles.input}
           />
