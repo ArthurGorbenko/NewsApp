@@ -27,7 +27,7 @@ const ListItemMini = ({
           <p>{post_content}</p>
         </li>
         <li>
-          <img className={style.image} src={attachment_url} alt='page' />
+          <img className={style.image} src={attachment_url ? attachment_url : ""} alt='page' />
         </li>
         <li>
           <button onClick={e => handleClick(e)} className={defaultStyles.button}>Update</button>

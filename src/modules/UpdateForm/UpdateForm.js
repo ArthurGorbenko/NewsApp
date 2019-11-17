@@ -27,7 +27,7 @@ const UpdateForm = ({ ID }) => {
     () => {
       setInputs({ ...inputs, news_id: ID })
     },
-    [ID]
+    [ID,setInputs]
   )
 
   return (
