@@ -10,7 +10,7 @@ import UserMenu from './modules/UserMenu/UserMenu'
 import SuccessMessage from './modules/SuccessMessage/SuccessMessage'
 import { Router } from '@reach/router'
 import style from './app.module.css'
-import { handleSubmitFormSuggestNews } from './assets/api'
+import { handleSubmitFormSuggestNews } from './lib/api'
 
 const App = () => {
   return (

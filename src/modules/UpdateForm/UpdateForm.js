@@ -3,7 +3,7 @@ import style from './update-form.module.css'
 import PublicForm from '../PublicForm/PublicForm'
 import useHandleFormSubmit from '../useHandleFormSubmit'
 import { useSelector } from 'react-redux'
-import { requestNewsDataToUpdate, sendInfoToUpdatePost } from '../../assets/api'
+import { requestNewsDataToUpdate, sendInfoToUpdatePost } from '../../lib/api'
 import defaultStyles from '../LoginForm/login-form.module.css'
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 

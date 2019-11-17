@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import style from './public-form.module.css'
 import useHandleFormSubmit from '../useHandleFormSubmit'
 import defaultStyles from '../LoginForm/login-form.module.css'
@@ -10,8 +10,9 @@ const PublicForm = ({ callback, defaultInputs }) => {
     inputs,
     setInputs
   ] = useHandleFormSubmit(callback)
-  const [files, setFiles] = useState("")
-  let myReff = React.createRef()
+  const [files, setFiles] = useState()
+  const myReff = useRef()
+
   useEffect(
     () => {
       setInputs({ ...defaultInputs })
@@ -28,7 +29,7 @@ const PublicForm = ({ callback, defaultInputs }) => {
 
   const handleFileUpload = e => {
     e.preventDefault()
-    setFiles(e.target.files[0])
+    setFiles(myReff.current.files[0])
   }
   return (
     <div className={style.wrapper}>
@@ -84,12 +85,13 @@ const PublicForm = ({ callback, defaultInputs }) => {
           <select
             className={defaultStyles.input}
             onChange={e => handleInputChange(e)}
-            value={inputs.category ? inputs.category : 'Travel'}
+            value={inputs.category ? inputs.category : 'travel'}
+            name='category'
           >
-            <option value='Travel'>Travel</option>
-            <option value='Psyhology'>Psyhology</option>
-            <option value='Relationship'>Relationship</option>
-            <option value='Sport'>Sport</option>
+            <option value='travel'>Travel</option>
+            <option value='psyhology'>Psyhology</option>
+            <option value='relationship'>Relationship</option>
+            <option value='sport'>Sport</option>
           </select>
         </label>
         <div className={style.label}>
@@ -98,13 +100,11 @@ const PublicForm = ({ callback, defaultInputs }) => {
             id='file'
             type='file'
             name='file'
-            ref={r => {
-              myReff = r
-            }}
+            ref={myReff}
             onChange={handleFileUpload}
           />
           <label htmlFor='file' className={style.custom_input}>
-            { files ? files.name : "Upload file"}
+            {files ? files.name : 'Upload file'}
           </label>
         </div>
         <input value='Submit' type='submit' className={style.submit} />

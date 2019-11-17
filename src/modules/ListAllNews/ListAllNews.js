@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import style from './list-news.module.css'
-import { fetchNews } from '../../assets/api'
+import { fetchNews } from '../../lib/api'
 import ListItem from '../ListItem/ListItem'
 import Loader from 'react-loader-spinner'
 
@@ -19,17 +19,19 @@ const ListNews = () => {
   return (
     <div className={style.wrapper_items}>
       {news && news.length ? (
-        news.map(item => (
-          <ListItem data={item} key={item.ID} />
-        ))
+        news.map(item => <ListItem data={item} key={item.ID} />)
       ) : (
-        <Loader
-          type='Puff'
-          color='#00BFFF'
-          height={300}
-          width={300}
-          timeout={4000}
-        />
+        <div className={style.loader_wrapper}>
+          <div className={style.loader_item}>
+            <Loader
+              type='Puff'
+              color='#00BFFF'
+              height={300}
+              width={300}
+              timeout={5000}
+            />
+          </div>
+        </div>
       )}
     </div>
   )

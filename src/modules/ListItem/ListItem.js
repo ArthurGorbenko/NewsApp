@@ -1,5 +1,4 @@
 import React from 'react'
-import style from './list-item.module.css'
 import ListItemFull from './ListItemFull'
 import ListItemMini from './ListItemMini'
 import { useSelector } from 'react-redux'

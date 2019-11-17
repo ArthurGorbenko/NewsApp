@@ -2,7 +2,7 @@ import React from 'react'
 import useHandleFormSubmit from '../useHandleFormSubmit'
 import { navigate } from '@reach/router'
 import style from '../LoginForm/login-form.module.css'
-import { sendRegistrationInfo } from '../../assets/api'
+import { sendRegistrationInfo } from '../../lib/api'
 
 const RegisterForm = () => {
   const proceedInfo = async inputsData => {
