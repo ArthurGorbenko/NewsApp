@@ -8,12 +8,12 @@
 - Hooks
 #### TO DO :
 - [ ] add ability to delete news
-- [ ] add responsive stylesheet
-- [ ] handle server answers
-- [ ] handle app errors
+- [ ] handle server errors
+
 #### Install :
 - First, you need to set up [WP-Blog](https://github.com/ArthurGorbenko/WP-Blog) on your local server enviroment
-- clone project
-- change paths in `./src/assets/URL.js` (default path used : `http://localhost`)
+- git clone https://github.com/ArthurGorbenko/NewsApp.git
+- `cd NewsApp`
 - `yarn install`
 - `yarn start`
+> if needed change path to BE in `./src/lib/URL.js` (default path used : http://localhost)
