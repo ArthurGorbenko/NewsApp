@@ -11,6 +11,7 @@ import SuccessMessage from './modules/SuccessMessage/SuccessMessage'
 import { Router } from '@reach/router'
 import style from './app.module.css'
 import { handleSubmitFormSuggestNews } from './lib/api'
+import ErrorMessage from './modules/ErrorMessage/ErrorMessage'
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         </div>
         <div className={style.wrapper_items}>
           <Router>
+            <ErrorMessage path='/error/:statusCode'/>
             <SuccessMessage path='/success/:ID'/>
             <SuccessMessage path='users/:login/success/:ID'/>
             <ListAllNews path='/*' />

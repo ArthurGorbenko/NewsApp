@@ -10,11 +10,11 @@ import axios from 'axios'
 import { navigate } from '@reach/router'
 
 export const fetchNews = async () => {
-  const response = await axios({
-    method: 'get',
-    url: GET_ALL_NEWS
-  })
-  return response
+    const response = await axios({
+      method: 'get',
+      url: GET_ALL_NEWS
+    })
+    return response
 }
 
 export const handleSubmitFormSuggestNews = data => {
